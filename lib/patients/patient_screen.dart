@@ -25,7 +25,7 @@ class PatientHomePageState extends State<PatientsScreen> {
       color: Colors.white,
     ),
     Icon(
-      Icons.chat,
+      Icons.telegram_sharp,
       color: Colors.white,
     ),
   ];

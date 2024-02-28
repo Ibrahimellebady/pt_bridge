@@ -562,188 +562,196 @@ class _TherapistsExerciesState extends State<TherapistsExercies> {
               //   },
               // ),
               ),
-          body: Column(
-            children: [
-              Expanded(
-                key: scaffoldKey,
-                child: Scrollbar(
-                  interactive: true,
-                  controller: controller,
-                  thickness: 8,
-                  thumbVisibility: true,
-                  trackVisibility: true,
-                  child: ListView.builder(
+          body: Scaffold(
+            body: Column(
+              children: [
+                Flexible(
+                  key: scaffoldKey,
+                  child: Scrollbar(
+                    interactive: true,
                     controller: controller,
-                    itemCount: layoutCubit.exrecises.length,
-                    itemBuilder: (context, index) {
-                      layoutCubit.exrecises[index];
-                      return Container(
-                        child: GestureDetector(
-                          onTap: () {
-                            layoutCubit.checkboxIsSelected(
-                                !layoutCubit.isSelected[index], index);
-                            selectedItems.clear();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 12),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: layoutCubit.isSelected[index]
-                                    ? AppColor
-                                        .secondPageContainerGradient2ndColor // Change to your desired color when checked
-                                    : Color(
-                                        0xffdbdade), // Change to your desired color when unchecked
-                                // color: AppColor
-                                //     .secondPageContainerGradient2ndColor,
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(12.0),
-                                  bottomRight: Radius.circular(12.0),
-                                  topLeft: Radius.circular(5.0),
-                                  bottomLeft: Radius.circular(5.0),
-                                ),
-                              ),
-                              width: 125,
-                              height: 100,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    width:
-                                        MediaQuery.of(context).size.width / 4,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5.0),
-                                        topLeft: Radius.circular(5.0),
-                                      ),
-                                      child: Image.network(
-                                          layoutCubit.usersFiltered.isEmpty
-                                              ? layoutCubit
-                                                  .exrecises[index].image!
-                                              : layoutCubit
-                                                  .exrecises[index].image!,
-                                          fit: BoxFit.fill),
-                                    ),
+                    thickness: 8,
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    child: ListView.builder(
+                      controller: controller,
+                      itemCount: layoutCubit.exrecises.length,
+                      itemBuilder: (context, index) {
+                        layoutCubit.exrecises[index];
+                        return Container(
+                          child: GestureDetector(
+                            onTap: () {
+                              layoutCubit.checkboxIsSelected(
+                                  !layoutCubit.isSelected[index], index);
+                              selectedItems.clear();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 12),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: layoutCubit.isSelected[index]
+                                      ? AppColor
+                                          .secondPageContainerGradient2ndColor // Change to your desired color when checked
+                                      : Color(
+                                          0xffdbdade), // Change to your desired color when unchecked
+                                  // color: AppColor
+                                  //     .secondPageContainerGradient2ndColor,
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(12.0),
+                                    bottomRight: Radius.circular(12.0),
+                                    topLeft: Radius.circular(5.0),
+                                    bottomLeft: Radius.circular(5.0),
                                   ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 170,
-                                    margin: EdgeInsets.only(
-                                        right: 16, left: 16, bottom: 6),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 46,
-                                          margin: const EdgeInsets.only(
-                                              top: 6, bottom: 4),
-                                          child: Text(
+                                ),
+                                width: 125,
+                                height: 100,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 100,
+                                      width:
+                                          MediaQuery.of(context).size.width / 4,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5.0),
+                                          topLeft: Radius.circular(5.0),
+                                        ),
+                                        child: Image.network(
                                             layoutCubit.usersFiltered.isEmpty
                                                 ? layoutCubit
-                                                    .exrecises[index].title!
+                                                    .exrecises[index].image!
                                                 : layoutCubit
-                                                    .exrecises[index].title!,
-                                            style: layoutCubit.isSelected[index]
-                                                ? TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w800,
-                                                    color: Colors.white)
-                                                : TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
+                                                    .exrecises[index].image!,
+                                            fit: BoxFit.fill),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          170,
+                                      margin: EdgeInsets.only(
+                                          right: 16, left: 16, bottom: 6),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            height: 46,
+                                            margin: const EdgeInsets.only(
+                                                top: 6, bottom: 4),
+                                            child: Text(
+                                              layoutCubit.usersFiltered.isEmpty
+                                                  ? layoutCubit
+                                                      .exrecises[index].title!
+                                                  : layoutCubit
+                                                      .exrecises[index].title!,
+                                              style:
+                                                  layoutCubit.isSelected[index]
+                                                      ? TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          color: Colors.white)
+                                                      : TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        ),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          Text(
+                                            layoutCubit.usersFiltered.isEmpty
+                                                ? layoutCubit
+                                                    .exrecises[index].body!
+                                                : layoutCubit
+                                                    .exrecises[index].body!,
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
+                                            style: layoutCubit.isSelected[index]
+                                                ? TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.white,
+                                                    fontSize: 13)
+                                                : TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 13),
                                           ),
-                                        ),
-                                        Text(
-                                          layoutCubit.usersFiltered.isEmpty
-                                              ? layoutCubit
-                                                  .exrecises[index].body!
-                                              : layoutCubit
-                                                  .exrecises[index].body!,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: layoutCubit.isSelected[index]
-                                              ? TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                  fontWeight: FontWeight.w300,
-                                                  color: Colors.white,
-                                                  fontSize: 13)
-                                              : TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 13),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 52, vertical: 24),
+                  child: TextButton(
+                    onPressed: () async {
+                      await layoutCubit
+                          .deleteExerciseCollection(widget.userModel.id!)
+                          .then(
+                        (value) {
+                          for (int i = 0;
+                              i < layoutCubit.exrecises.length;
+                              i++) {
+                            if (layoutCubit.isSelected[i] == true) {
+                              print("addd");
+                              layoutCubit.sendExercise(
+                                index: i,
+                                title: layoutCubit.exrecises[i].title!,
+                                receiverID: widget.userModel.id!,
+                                body: layoutCubit.exrecises[i].body!,
+                                image: layoutCubit.exrecises[i].image!,
+                                steps: layoutCubit.exrecises[i].steps!,
+                              );
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Exercises have been sent to your patient!'),
+                                  duration: Duration(seconds: 2),
+                                  width:
+                                      300, // Adjust the width based on your design
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            }
+                          }
+                        },
                       );
                     },
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
-                child: TextButton(
-                  onPressed: () async {
-                    await layoutCubit
-                        .deleteExerciseCollection(widget.userModel.id!)
-                        .then(
-                      (value) {
-                        for (int i = 0; i < layoutCubit.exrecises.length; i++) {
-                          if (layoutCubit.isSelected[i] == true) {
-                            print("addd");
-                            layoutCubit.sendExercise(
-                              index: i,
-                              title: layoutCubit.exrecises[i].title!,
-                              receiverID: widget.userModel.id!,
-                              body: layoutCubit.exrecises[i].body!,
-                              image: layoutCubit.exrecises[i].image!,
-                              steps: layoutCubit.exrecises[i].steps!,
-                            );
-
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Exercises have been sent to your patient!'),
-                                duration: Duration(seconds: 2),
-                                width:
-                                    300, // Adjust the width based on your design
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                          }
-                        }
-                      },
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(AppColor.mainBlue),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: MaterialStateProperty.all(
-                      const Size(double.infinity, 20),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(AppColor.mainBlue),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      minimumSize: MaterialStateProperty.all(
+                        const Size(double.infinity, 20),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
+                    child: Text('Share Now',
+                        style: TextStyles.font16WhiteSemiBold),
                   ),
-                  child:
-                      Text('Share Now', style: TextStyles.font16WhiteSemiBold),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

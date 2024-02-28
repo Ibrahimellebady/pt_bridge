@@ -228,9 +228,12 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width - 70,
             height: 250,
-            child: Image.asset('name'),
+            child: Image.asset(
+              'assets/images/fill info 3.jpg',
+              fit: BoxFit.fill,
+            ),
           ),
           Card(
             shape: RoundedRectangleBorder(
@@ -364,9 +367,12 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width - 70,
             height: 250,
-            child: Image.asset('name'),
+            child: Image.asset(
+              'assets/images/fill info 2.jpg',
+              fit: BoxFit.fill,
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 8),
@@ -460,9 +466,12 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width - 70,
             height: 250,
-            child: Image.asset('name'),
+            child: Image.asset(
+              'assets/images/fill info 1.jpg',
+              fit: BoxFit.fill,
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 8),
@@ -557,9 +566,12 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width - 70,
             height: 250,
-            child: Image.asset('name'),
+            child: Image.asset(
+              'assets/images/fill info 0.jpg',
+              fit: BoxFit.fill,
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 8),
@@ -1380,8 +1392,9 @@ class textField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: fieldName,
           labelStyle: TextStyle(
-            color: AppColor.gradientFirst,
-          ),
+              color: Color(0xff542D94).withOpacity(0.9),
+              fontSize: 16,
+              fontWeight: FontWeight.w700),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -1419,7 +1432,10 @@ class _boolenQuestionState extends State<boolenQuestion> {
       children: [
         Text(
           widget.question,
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(
+              fontSize: 16,
+              color: Color(0xff542D94).withOpacity(0.8),
+              fontWeight: FontWeight.w700),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -1427,6 +1443,8 @@ class _boolenQuestionState extends State<boolenQuestion> {
             Row(
               children: [
                 Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: Colors.green,
                   value: boolen == true,
                   onChanged: (value) {
                     setState(() {
@@ -1441,6 +1459,8 @@ class _boolenQuestionState extends State<boolenQuestion> {
             Row(
               children: [
                 Checkbox(
+                  activeColor: Colors.red,
+                  checkColor: Colors.white,
                   value: boolen == false,
                   onChanged: (value) {
                     setState(() {

@@ -65,7 +65,10 @@ class PatientProfileScreen extends StatelessWidget {
                             child: Text(
                               'Edit your Sheet..',
                               style: TextStyle(
+                                  decorationColor: Color(0xff542D94),
                                   decoration: TextDecoration.underline,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w500,
                                   color: Color(0xff542D94)),
                             )),
                       ),
@@ -207,13 +210,32 @@ class PatientProfileScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                show_user_info_card(
-                                  user: user,
-                                  CardIcon: Icons.sports_martial_arts_sharp,
-                                  CardInfo: user.isPatientActive != null
-                                      ? '${user.isPatientActive}'
-                                      : 'Not available',
-                                  cardName: 'Active',
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    show_user_info_semi_card(
+                                      user: user,
+                                      CardIcon: Icons.sports_martial_arts_sharp,
+                                      CardInfo: user.isPatientActive != null
+                                          ? '${user.isPatientActive}'
+                                          : 'Not available',
+                                      cardName: 'Active',
+                                    ),
+                                    show_user_info_semi_card(
+                                      user: user,
+                                      CardIcon: Icons.health_and_safety,
+                                      CardInfo: (user.patientWeight != null &&
+                                              user.patientHeight != null)
+                                          ? ((user.patientWeight! /
+                                                  ((user.patientHeight! / 100) *
+                                                      (user.patientHeight! /
+                                                          100)))
+                                              .toStringAsFixed(1))
+                                          : 'Not Available',
+                                      cardName: 'BMI',
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: 16,

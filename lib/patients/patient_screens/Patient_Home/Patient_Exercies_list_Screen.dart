@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/syles.dart';
+import '../../patient_screen.dart';
 import 'detailes_exercise_screen.dart';
 
 class Patient_Exercies_list_Screen extends StatelessWidget {
@@ -239,21 +240,30 @@ class Patient_Exercies_list_Screen extends StatelessWidget {
                                                 layoutCubit.sendRequestToDoctor(
                                                     doctorID: userModel.id!);
 
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                        'your request has been send..'),
-                                                    duration:
-                                                        Duration(seconds: 2),
-                                                    width:
-                                                        300, // Adjust the width based on your design
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 20),
-                                                    behavior: SnackBarBehavior
-                                                        .floating,
-                                                  ),
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      content: Text(
+                                                          'Your request has been sent to your therapist!'),
+                                                      actions: <Widget>[
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) {
+                                                              return PatientsScreen();
+                                                            }));
+                                                          },
+                                                          // PatientsScreen
+                                                          child: Text('OK'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
                                                 );
                                               },
                                               child: Container(

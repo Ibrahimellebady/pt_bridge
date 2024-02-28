@@ -190,7 +190,7 @@ class Therapist_List_Screen extends StatelessWidget {
                                           Radius.circular(8),
                                         ),
                                       ),
-                                      height: 55,
+                                      height: 70,
                                       child: Row(
                                         children: [
                                           Padding(
@@ -210,19 +210,51 @@ class Therapist_List_Screen extends StatelessWidget {
                                                             .image!)),
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
-                                                166,
-                                            child: Text(
-                                              layoutCubit.therapistsFiltered
-                                                      .isEmpty
-                                                  ? "Dr. ${layoutCubit.therapist[index].name!}"
-                                                  : "Dr. ${layoutCubit.therapistsFiltered[index].name!}",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w900,
-                                                  fontSize: 20),
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 8),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      166,
+                                                  child: Text(
+                                                    layoutCubit
+                                                            .therapistsFiltered
+                                                            .isEmpty
+                                                        ? "Dr. ${layoutCubit.therapist[index].name!}"
+                                                        : "Dr. ${layoutCubit.therapistsFiltered[index].name!}",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w900,
+                                                        fontSize: 22),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      166,
+                                                  child: Text(
+                                                    layoutCubit
+                                                            .therapistsFiltered
+                                                            .isEmpty
+                                                        ? "${layoutCubit.therapist[index].doctorDiscription ?? 'Job title is not available yet..'}"
+                                                        : "${layoutCubit.therapistsFiltered[index].doctorDiscription ?? 'Job title is not available yet..'}",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                        fontSize: 14),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                           Icon(

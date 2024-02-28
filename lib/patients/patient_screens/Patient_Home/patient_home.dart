@@ -1,12 +1,15 @@
 import 'package:elag/patients/patient_screens/Patient_Home/Patient_Exercies_list_Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/syles.dart';
 import '../../../controller/cubit/layout_cubit.dart';
+import '../../../view/auth/login.dart';
 import 'Therapist_List_Screen.dart';
 
 class Patient_Home extends StatelessWidget {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Patient_Home({super.key});
@@ -24,6 +27,47 @@ class Patient_Home extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          drawer: Drawer(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (layoutCubit.userModel != null)
+                  UserAccountsDrawerHeader(
+                      accountName: Text(layoutCubit.userModel!.name!),
+                      accountEmail: Text(layoutCubit.userModel!.email!),
+                      currentAccountPicture: CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                              NetworkImage(layoutCubit.userModel!.image!))),
+                GestureDetector(
+                  onTap: () {
+                    auth.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Icon(Icons.logout),
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("Log out"),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           key: scaffoldKey,
           body: Container(
             decoration: BoxDecoration(
@@ -99,14 +143,24 @@ class Patient_Home extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  'you also can chat with your therapist to provide updates on your progress..',
+                                  'Fill your electronic medical sheet to share it easily with your therapist..',
                                   style: TextStyle(
                                       color: Color(0xff542D94),
                                       fontWeight: FontWeight.w600,
                                       fontStyle: FontStyle.italic),
                                 ),
                                 SizedBox(
-                                  height: 6,
+                                  height: 8,
+                                ),
+                                Text(
+                                  'Easily chat with therapists to ask and provide updates on your progress..',
+                                  style: TextStyle(
+                                      color: Color(0xff542D94),
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                                SizedBox(
+                                  height: 8,
                                 ),
                                 Text(
                                   'Start your journey towards recovery and well-being From your home Now!',
@@ -114,6 +168,7 @@ class Patient_Home extends StatelessWidget {
                                       color: Color(0xff542D94),
                                       fontWeight: FontWeight.w600,
                                       fontStyle: FontStyle.italic),
+                                  textAlign: TextAlign.center,
                                 )
                               ],
                             ),
@@ -129,7 +184,7 @@ class Patient_Home extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Container(
                             margin: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height - 350,
+                              top: MediaQuery.of(context).size.height - 280,
                               right: 16,
                             ),
                             child: GestureDetector(
@@ -227,7 +282,7 @@ class Patient_Home extends StatelessWidget {
                         })
                     : Container(
                         margin: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height - 350,
+                          top: MediaQuery.of(context).size.height - 280,
                           right: 16,
                         ),
                         child: GestureDetector(

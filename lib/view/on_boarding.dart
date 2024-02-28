@@ -1,7 +1,7 @@
 import 'package:elag/constants/syles.dart';
 import 'package:elag/view/auth/login.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -19,8 +19,6 @@ class OnboardingScreen extends StatelessWidget {
                           children: [
                             SvgPicture.asset('assets/svgs/docdoc_logo.svg'),
                             const SizedBox(width: 10),
-                            Text('DocDoc',
-                                style: TextStyles.font24Black700Weight)
                           ]),
                       const SizedBox(height: 30),
                       Stack(children: [
@@ -45,43 +43,46 @@ class OnboardingScreen extends StatelessWidget {
                             bottom: 30,
                             left: 0,
                             right: 0,
-                            child: Text('Best Doctor\nAppointment App',
+                            child: Text('PT Bridge',
                                 textAlign: TextAlign.center,
-                                style: TextStyles.font32BlueBold
-                                    .copyWith(height: 1.4)))
+                                style: TextStyle(
+                                    fontSize: 52,
+                                    color:
+                                        AppColor.gradientFirst.withOpacity(0.7),
+                                    fontWeight: FontWeight.w900)))
                       ]),
                       Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Column(children: [
-                            Text(
-                              'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
-                              style: TextStyles.font13GrayRegular,
-                              textAlign: TextAlign.center,
-                            ),
                             const SizedBox(height: 30),
                             TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()));
-                                },
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      AppColor.mainBlue),
-                                  tapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                  minimumSize: MaterialStateProperty.all(
-                                    const Size(double.infinity, 52),
-                                  ),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()));
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColor.mainBlue),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                minimumSize: MaterialStateProperty.all(
+                                  const Size(double.infinity, 52),
+                                ),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
                                   ),
                                 ),
-                                child: Text('Get Started',
-                                    style: TextStyles.font16WhiteSemiBold))
+                              ),
+                              child: Text(
+                                'Get Started',
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            )
                           ]))
                     ])))));
   }

@@ -57,7 +57,7 @@ class chatting_therapist_list extends StatelessWidget {
                                 return Container(
                                   margin: EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 8),
-                                  padding: EdgeInsets.all(8),
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
@@ -91,16 +91,19 @@ class chatting_therapist_list extends StatelessWidget {
                                       );
                                     },
                                     contentPadding: EdgeInsets.zero,
-                                    leading: CircleAvatar(
-                                        radius: 25,
-                                        backgroundImage: NetworkImage(
-                                            layoutCubit
-                                                    .therapistsFiltered.isEmpty
-                                                ? layoutCubit
-                                                    .therapist[index].image!
-                                                : layoutCubit
-                                                    .therapistsFiltered[index]
-                                                    .image!)),
+                                    leading: Padding(
+                                      padding: const EdgeInsets.only(left: 4.0),
+                                      child: CircleAvatar(
+                                          radius: 25,
+                                          backgroundImage: NetworkImage(
+                                              layoutCubit.therapistsFiltered
+                                                      .isEmpty
+                                                  ? layoutCubit
+                                                      .therapist[index].image!
+                                                  : layoutCubit
+                                                      .therapistsFiltered[index]
+                                                      .image!)),
+                                    ),
                                     title: Text(
                                       layoutCubit.therapistsFiltered.isEmpty
                                           ? layoutCubit.therapist[index].name!
@@ -117,6 +120,22 @@ class chatting_therapist_list extends StatelessWidget {
                                       child: Icon(
                                         Icons.telegram_sharp,
                                         color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    subtitle: Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          166,
+                                      child: Text(
+                                        layoutCubit.therapistsFiltered.isEmpty
+                                            ? "${layoutCubit.therapist[index].doctorDiscription ?? 'Job title is not available yet..'}"
+                                            : "${layoutCubit.therapistsFiltered[index].doctorDiscription ?? 'Job title is not available yet..'}",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 13),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                   ),

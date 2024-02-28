@@ -101,7 +101,7 @@ class Show_Patient_Exercies_list_Screen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  child: Expanded(
+                  child: Flexible(
                       child: state is GetRequestDataLoadingState
                           ? const Center(
                               child: CircularProgressIndicator(),

@@ -5,97 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Therapist_Home/show_patient_profile_screen.dart';
 
-// class PatientChatScreen extends StatelessWidget {
-//   final UserModel userModel;
-//   final messageController = TextEditingController();
-//
-//   PatientChatScreen({
-//     Key? key,
-//     required this.userModel,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final cubit = BlocProvider.of<LayoutCubit>(context)
-//       ..getMessages(receiverID: userModel.id!);
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//           title: Text(userModel.name!),
-//           leading:
-//               CircleAvatar(backgroundImage: NetworkImage(userModel.image!)),
-//           elevation: 0,
-//           automaticallyImplyLeading: false),
-//       body: BlocConsumer<LayoutCubit, LayoutState>(
-//         listener: (context, state) {
-//           if (state is SuccessPatientSendMessageState) {
-//             messageController.clear();
-//           }
-//         },
-//         builder: (context, state) {
-//           return Container(
-//             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-//             decoration: const BoxDecoration(
-//                 image: DecorationImage(
-//                     image: AssetImage("assets/images/whatsapp_Back.png"),
-//                     fit: BoxFit.cover)),
-//             child: Column(
-//               children: [
-//                 Expanded(
-//                   child: state is GetMessagesLoadingState
-//                       ? const Center(child: CircularProgressIndicator())
-//                       : cubit.messages.isNotEmpty
-//                           ? ListView.builder(
-//                               itemCount: cubit.messages.length,
-//                               itemBuilder: (context, index) {
-//                                 return GestureDetector(
-//                                   onTap: () {
-//                                     if (index >= 0 &&
-//                                         index < cubit.messages.length) {
-//                                       cubit.messages.removeAt(0);
-//                                       print('masseges is deleated ');
-//
-//                                       // Emit a new state with the updated list
-//                                     }
-//                                   },
-//                                   child: Container(
-//                                       color: Colors.blueGrey,
-//                                       margin: const EdgeInsets.only(bottom: 15),
-//                                       padding: const EdgeInsets.symmetric(
-//                                           vertical: 10, horizontal: 12),
-//                                       child: Text(cubit.messages[index].title!,
-//                                           style: const TextStyle(
-//                                               color: Colors.white,
-//                                               fontSize: 18))),
-//                                 );
-//                               })
-//                           : const Center(
-//                               child: Text("No Messages yet......"),
-//                             ),
-//                 ),
-//                 const SizedBox(height: 12),
-//                 TextField(
-//                   controller: messageController,
-//                   decoration: InputDecoration(
-//                     suffixIcon: GestureDetector(
-//                         child: const Icon(Icons.send),
-//                         onTap: () {
-//                           cubit.sendMessage(
-//                               message: messageController.text,
-//                               receiverID: userModel.id!);
-//                         }),
-//                     border: const OutlineInputBorder(),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
 class PatientChatScreen extends StatefulWidget {
   final UserModel userModel;
 
@@ -126,8 +35,7 @@ class _PatientChatScreen extends State<PatientChatScreen> {
           return Container(
             child: Stack(
               children: [
-                Expanded(
-                    child: Container(
+                Container(
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, top: 160, bottom: 16),
                   child: Stack(
@@ -175,7 +83,7 @@ class _PatientChatScreen extends State<PatientChatScreen> {
                           }),
                     ],
                   ),
-                )),
+                ),
                 Positioned(
                   left: 15,
                   bottom: 16,
@@ -296,6 +204,7 @@ class _PatientChatScreen extends State<PatientChatScreen> {
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -308,25 +217,33 @@ class _PatientChatScreen extends State<PatientChatScreen> {
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${widget.userModel.patientAge ?? ''}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                    Text(
-                                      '${widget.userModel.sex ?? ''}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${widget.userModel.sex ?? ''}',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                            fontStyle: FontStyle.italic),
+                                      ),
+                                      SizedBox(
+                                        width: 6,
+                                      ),
+                                      Text(
+                                        '${widget.userModel.patientAge ?? ''}',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle: FontStyle.italic),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
